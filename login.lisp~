@@ -1,0 +1,20 @@
+(in-package #:excangr-web)
+
+(restas:define-route login ("login")
+  (excangr-web-view:login-page
+    (list :favicon (restas:genurl 'favicon.png)
+          :bootstrap (restas:genurl 'bootstrap.min.css )
+          )
+    ))
+
+(restas:define-route main ("")
+  (cl-who:with-html-output-to-string (out)
+    (:html
+      (:body
+        (:a
+          :href (restas:genurl 'login)
+          "Login")))))
+
+(restas:start '#:excangr-web :port 8888)
+
+(restas:stop-all)

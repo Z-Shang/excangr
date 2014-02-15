@@ -1,0 +1,10 @@
+(in-package #:cl-user)
+
+(asdf:defsystem :excangr
+  :version "0.0.1"
+  :depends-on 
+  (:restas :closure-template)
+  :components (
+               (:file "package")
+               (:file "db" :depends-on ("package"))
+               (:file "web" :depends-on ("package" "db"))))
